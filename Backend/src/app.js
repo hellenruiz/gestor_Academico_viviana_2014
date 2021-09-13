@@ -8,7 +8,7 @@ const cors = require('cors'); //Permite la conexión entre dos servidores (Front
 const app = express();
 
 // Db connection
-//const { mongoose } = require('./drivers_databases/driverMongoDB');
+const { mongoose } = require('./databases/driverMongoDB');
 //const { mysql } = require('./drivers_databases/driverMySql');
 
 // Settings 
@@ -19,14 +19,13 @@ app.use(cors()); //Cada petición que llegue podrá enviar y recibir datos
 app.use(morgan('dev'));
 app.use(express.json());
 
-// Middlewares
-app.use(morgan('dev'));
-app.use(express.json());
+
 
 // Routes
+//app.use('/api/student', require('./routes/student'));
 app.use('/api/teacher', require('./routes/teachers'));
 app.use('/api/admin', require('./routes/admin'));
-app.use('/api/student', require('./routes/students'));
+app.use('/api/users', require('./routes/users'));
 
 // Static Files
 app.use(express.static(path.join(__dirname, 'public')));;
